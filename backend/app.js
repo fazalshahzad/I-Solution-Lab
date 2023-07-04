@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 app.use(cors({
-  origin: ['http://localhost:3000',],
+  origin: ['https://i-solution-lab-complete.vercel.app',],
   credentials: true
 }));
 
