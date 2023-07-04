@@ -44,16 +44,30 @@ const Footer = () => {
           <br />
           <p>The home and elements needeed to create beatiful products.</p>
           <div className="flex items-center mt-[15px]">
-            <AiFillFacebook size={25} className="cursor-pointer" />
+            <a
+              href="https://www.facebook.com/isolutionlabh"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <AiFillFacebook size={25} className="cursor-pointer" />
+            </a>
+            <a
+              href="https://www.instagram.com/isolution_lab/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ marginLeft: "15px" }}
+            >
+              <AiFillInstagram size={25} className="cursor-pointer" />
+            </a>
+            <a
+              href="https://www.youtube.com/@isolutiontraders/featured"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ marginLeft: "15px" }}
+            >
+              <AiFillYoutube size={25} className="cursor-pointer" />
+            </a>
             <AiOutlineTwitter
-              size={25}
-              style={{ marginLeft: "15px", cursor: "pointer" }}
-            />
-            <AiFillInstagram
-              size={25}
-              style={{ marginLeft: "15px", cursor: "pointer" }}
-            />
-            <AiFillYoutube
               size={25}
               style={{ marginLeft: "15px", cursor: "pointer" }}
             />
@@ -62,7 +76,7 @@ const Footer = () => {
 
         <ul className="text-center sm:text-start">
           <h1 className="mb-1 font-semibold">Company</h1>
-          {footerProductLinks.map((link,index) => (
+          {footerProductLinks.map((link, index) => (
             <li key={index}>
               <Link
                 className="text-gray-400 hover:text-teal-400 duration-300
@@ -77,7 +91,7 @@ const Footer = () => {
 
         <ul className="text-center sm:text-start">
           <h1 className="mb-1 font-semibold">Shop</h1>
-          {footercompanyLinks.map((link,index) => (
+          {footercompanyLinks.map((link, index) => (
             <li key={index}>
               <Link
                 className="text-gray-400 hover:text-teal-400 duration-300
@@ -92,7 +106,7 @@ const Footer = () => {
 
         <ul className="text-center sm:text-start">
           <h1 className="mb-1 font-semibold">Support</h1>
-          {footerSupportLinks.map((link,index) => (
+          {footerSupportLinks.map((link, index) => (
             <li key={index}>
               <Link
                 className="text-gray-400 hover:text-teal-400 duration-300
