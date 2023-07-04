@@ -30,7 +30,7 @@ cloudinary.config({
 });
 
 app.use(cors({
-  origin: ['https://i-solution-lab.vercel.app/',],
+  origin: ['https://i-solution-lab.vercel.app'],
   credentials: true
 }));
 
