@@ -58,7 +58,7 @@ const Header = ({ activeHeading }) => {
           <div>
             <Link to="/">
               <img
-                src="https://shopo.quomodothemes.website/assets/images/logo.svg"
+                src="https://scontent.flhe5-1.fna.fbcdn.net/v/t39.30808-6/350642596_847358770147098_5717145849108429372_n.jpg?_nc_cat=108&cb=99be929b-59f725be&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFROlHaLIMs8XRacyxqDFmOsOXpc4BMBJCw5elzgEwEkBGVdmK8vbi3ooc3oUWw3MbifnU9mX-c6grzi1gJ2won&_nc_ohc=OfOO2MW2_wkAX_w-IhV&_nc_ht=scontent.flhe5-1.fna&oh=00_AfD4kP1SJN3MY9NszkIMmvwkkeiBJjiXjwLhv-_jFEGQRQ&oe=64AA2321"
                 alt=""
               />
             </Link>
