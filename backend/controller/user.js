@@ -45,7 +45,7 @@ router.post("/create-user", async (req, res, next) => {
       });
       res.status(201).json({
         success: true,
-        message: `please check your email:- ${user.email} to activate your account!`,
+        message: `Please check your email (${user.email}) to activate your account!`,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
@@ -106,13 +106,13 @@ router.post(
       const { email, password } = req.body;
 
       if (!email || !password) {
-        return next(new ErrorHandler("Please provide the all fields!", 400));
+        return next(new ErrorHandler("Please provide all fields!", 400));
       }
 
       const user = await User.findOne({ email }).select("+password");
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists!", 400));
+        return next(new ErrorHandler("User doesn't exist!", 400));
       }
 
       const isPasswordValid = await user.comparePassword(password);
@@ -139,7 +139,7 @@ router.get(
       const user = await User.findById(req.user.id);
 
       if (!user) {
-        return next(new ErrorHandler("User doesn't exists", 400));
+        return next(new ErrorHandler("User doesn't exist", 400));
       }
 
       res.status(200).json({
@@ -153,23 +153,17 @@ router.get(
 );
 
 // log out user
-router.get(
-  "/logout",
-  catchAsyncErrors(async (req, res, next) => {
-    try {
-      res.cookie("token", null, {
-        expires: new Date(Date.now()),
-        httpOnly: true,
-      });
-      res.status(201).json({
-        success: true,
-        message: "Log out successful!",
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
-    }
-  })
-);
+router.get("/logout", (req, res) => {
+  res.clearCookie("token"); // Clear the token cookie
+
+  // Perform any additional logout operations, such as invalidating the token or session
+  // For example, if you are using JWT, you may want to add the token to a blacklist to prevent further use
+
+  res.status(200).json({
+    success: true,
+    message: "Logout successful!",
+  });
+});
 
 // update user info
 router.put(
@@ -276,135 +270,7 @@ router.put(
 
       res.status(200).json({
         success: true,
-        user,
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
-    }
-  })
-);
-
-// delete user address
-router.delete(
-  "/delete-user-address/:id",
-  isAuthenticated,
-  catchAsyncErrors(async (req, res, next) => {
-    try {
-      const userId = req.user._id;
-      const addressId = req.params.id;
-
-      await User.updateOne(
-        {
-          _id: userId,
-        },
-        { $pull: { addresses: { _id: addressId } } }
-      );
-
-      const user = await User.findById(userId);
-
-      res.status(200).json({ success: true, user });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
-    }
-  })
-);
-
-// update user password
-router.put(
-  "/update-user-password",
-  isAuthenticated,
-  catchAsyncErrors(async (req, res, next) => {
-    try {
-      const user = await User.findById(req.user.id).select("+password");
-
-      const isPasswordMatched = await user.comparePassword(
-        req.body.oldPassword
-      );
-
-      if (!isPasswordMatched) {
-        return next(new ErrorHandler("Old password is incorrect!", 400));
-      }
-
-      if (req.body.newPassword !== req.body.confirmPassword) {
-        return next(
-          new ErrorHandler("Password doesn't matched with each other!", 400)
-        );
-      }
-      user.password = req.body.newPassword;
-
-      await user.save();
-
-      res.status(200).json({
-        success: true,
-        message: "Password updated successfully!",
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
-    }
-  })
-);
-
-// find user infoormation with the userId
-router.get(
-  "/user-info/:id",
-  catchAsyncErrors(async (req, res, next) => {
-    try {
-      const user = await User.findById(req.params.id);
-
-      res.status(201).json({
-        success: true,
-        user,
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
-    }
-  })
-);
-
-// all users --- for admin
-router.get(
-  "/admin-all-users",
-  isAuthenticated,
-  isAdmin("Admin"),
-  catchAsyncErrors(async (req, res, next) => {
-    try {
-      const users = await User.find().sort({
-        createdAt: -1,
-      });
-      res.status(201).json({
-        success: true,
-        users,
-      });
-    } catch (error) {
-      return next(new ErrorHandler(error.message, 500));
-    }
-  })
-);
-
-// delete users --- admin
-router.delete(
-  "/delete-user/:id",
-  isAuthenticated,
-  isAdmin("Admin"),
-  catchAsyncErrors(async (req, res, next) => {
-    try {
-      const user = await User.findById(req.params.id);
-
-      if (!user) {
-        return next(
-          new ErrorHandler("User is not available with this id", 400)
-        );
-      }
-
-      const imageId = user.avatar.public_id;
-
-      await cloudinary.v2.uploader.destroy(imageId);
-
-      await User.findByIdAndDelete(req.params.id);
-
-      res.status(201).json({
-        success: true,
-        message: "User deleted successfully!",
+        user: user,
       });
     } catch (error) {
       return next(new ErrorHandler(error.message, 500));
