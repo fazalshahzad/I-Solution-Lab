@@ -40,6 +40,7 @@ const ProfileSidebar = ({ setActive, active }) => {
     });
 };
 
+
   return (
     <div className="w-full bg-white shadow-sm rounded-[10px] p-4 pt-8">
       <div
