@@ -6,16 +6,13 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 app.use(cors({
-  origin: ['https://i-solution-lab.vercel.app',],
-  credentials: true
+  origin: ['https://i-solution-lab.vercel.app'],
+  credentials: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 }));
 
 app.use(express.json());
 app.use(cookieParser());
-app.use("/test", (req, res) => {
-  res.send("Hello world!");
-});
-
 app.use(bodyParser.urlencoded({ extended: true, limit: "500mb" }));
 
 // config
