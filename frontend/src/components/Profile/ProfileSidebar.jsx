@@ -18,18 +18,28 @@ import { useSelector } from "react-redux";
 const ProfileSidebar = ({ setActive, active }) => {
   const navigate = useNavigate();
  const {user} = useSelector((state) => state.user);
-  const logoutHandler = () => {
-    axios
-      .get(`${server}/user/logout`, { withCredentials: true })
-      .then((res) => {
-        toast.success(res.data.message);
-        window.location.reload(true);
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.log(error.response.data.message);
-      });
-  };
+ const logoutHandler = () => {
+  axios
+    .get(`${server}/user/logout`, { withCredentials: true })
+    .then((res) => {
+      toast.success(res.data.message);
+      navigate("/login");
+    })
+    .catch((error) => {
+      toast.error(error.response.data.message);
+    })
+    .finally(() => {
+      // Clear the token from local storage or cookies
+      // For example, if using local storage:
+      localStorage.removeItem("token");
+      // If using cookies:
+      // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      
+      // Redirect to the login page
+      navigate("/login");
+    });
+};
+
   return (
     <div className="w-full bg-white shadow-sm rounded-[10px] p-4 pt-8">
       <div
