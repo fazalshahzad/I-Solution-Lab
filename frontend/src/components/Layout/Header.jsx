@@ -16,7 +16,6 @@ import { useSelector } from "react-redux";
 import Cart from "../cart/Cart";
 import Wishlist from "../Wishlist/Wishlist";
 import { RxCross1 } from "react-icons/rx";
-import logo from '../../Assests/shoplogo.png'
 
 const Header = ({ activeHeading }) => {
   const { isAuthenticated, user } = useSelector((state) => state.user);
@@ -59,8 +58,8 @@ const Header = ({ activeHeading }) => {
           <div>
             <Link to="/">
               <img
-                src={logo}
-                alt="ISOLUTIONTRADERS"
+                src="https://shopo.quomodothemes.website/assets/images/logo.svg"
+                alt=""
               />
             </Link>
           </div>
