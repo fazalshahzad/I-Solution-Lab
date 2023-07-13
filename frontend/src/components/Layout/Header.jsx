@@ -86,7 +86,7 @@ const Header = ({ activeHeading }) => {
                           <img
                             src={`${i.images[0]?.url}`}
                             alt=""
-                            className="w-[40px] h-[40px] mr-[10px]"
+                            className="w-[10px] h-[10px] mr-[10px]"
                           />
                           <h1>{i.name}</h1>
                         </div>
