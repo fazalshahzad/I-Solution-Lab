@@ -58,7 +58,7 @@ const Header = ({ activeHeading }) => {
           <div>
             <Link to="/">
               <img
-                src="https://ibb.co/Kyx5Yhv"
+                src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
                 alt=""
               />
             </Link>
