@@ -12,8 +12,11 @@ const Hero = () => {
     <div
       className={`relative min-h-[70vh] 800px:min-h-[80vh] w-full bg-no-repeat ${styles.noramlFlex}`}
       style={{
-        backgroundImage:
-          "url(https://i.ibb.co/0rxVhhd/parts-pairing-screen.jpg)",
+        backgroundImage: "url(https://i.ibb.co/0rxVhhd/parts-pairing-screen.jpg)",
+        backgroundSize: "cover", // Adjusts the background image to cover the entire element
+        backgroundPosition: "center", // Centers the background image within the element
+        height: "400px", // Set the desired height
+        width: "100%", // Set the desired width (here, it occupies the full width of the container),
       }}
     >
       <div className={`${styles.section} w-[90%] 800px:w-[60%]`}>
