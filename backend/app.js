@@ -2,6 +2,7 @@ const express = require("express");
 const ErrorHandler = require("./middleware/error");
 const app = express();
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 
 app.use(cors({
@@ -11,8 +12,8 @@ app.use(cors({
 }));
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true, limit: "50mb" })); // Update the limit value to "50mb"
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true, limit: "50000mb" }));
 
 // config
 if (process.env.NODE_ENV !== "PRODUCTION") {
@@ -47,17 +48,4 @@ app.use("/api/v2/withdraw", withdraw);
 // it's for ErrorHandling
 app.use(ErrorHandler);
 
-// create server
-const server = app.listen(process.env.PORT, () => {
-  console.log(`Server is running on http://localhost:${process.env.PORT}`);
-});
-
-// unhandled promise rejection
-process.on("unhandledRejection", (err) => {
-  console.log(`Shutting down the server for ${err.message}`);
-  console.log(`Shutting down the server for unhandled promise rejection`);
-
-  server.close(() => {
-    process.exit(1);
-  });
-});
+module.exports = app;
