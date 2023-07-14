@@ -25,7 +25,7 @@ const Hero = () => {
         >
           Best Collection for <br /> Mobile Parts
         </h1>
-        <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#000000ba]">
+        <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#fff]">
         Discover genuine mobile parts for all your repair needs. We offer high-quality components sourced directly from trusted manufacturers.<br /> From screens to batteries and more, find the perfect part to restore your mobile device's functionality.
           <br /> Trust us for reliable and durable solutions that ensure optimal performance. Upgrade your repair experience with our authentic mobile parts.
         </p>
