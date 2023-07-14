@@ -55,14 +55,17 @@ const Header = ({ activeHeading }) => {
     <>
       <div className={`${styles.section}`}>
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
-          <div>
-            <Link to="/">
-              <img
-                src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
-                alt=""
-              />
-            </Link>
-          </div>
+        <div>
+  <Link to="/">
+    <img
+      src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
+      alt=""
+      height={50} // Add the desired height value
+      width={100} // Add the desired width value
+    />
+  </Link>
+</div>
+
           {/* search box */}
           <div className="w-[50%] relative">
             <input
