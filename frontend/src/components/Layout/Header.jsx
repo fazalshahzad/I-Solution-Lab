@@ -220,6 +220,8 @@ const Header = ({ activeHeading }) => {
               <img
                 src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
                 alt=""
+                height={50} // Add the desired height value
+                width={100} // Add the desired width value
                 className="mt-3 cursor-pointer"
               />
             </Link>
