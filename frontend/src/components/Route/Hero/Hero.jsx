@@ -20,7 +20,7 @@ const Hero = () => {
         >
           Best Collection for <br /> home Decoration
         </h1>
-        <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#000000ba]" style={{ textShadow: "1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000" }}>
+        <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#000000ba]" >
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae,
           assumenda? Quisquam itaque <br /> exercitationem labore vel, dolore
           quidem asperiores, laudantium temporibus soluta optio consequatur{" "}
