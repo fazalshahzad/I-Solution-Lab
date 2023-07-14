@@ -21,11 +21,11 @@ const Hero = () => {
     >
       <div className={`${styles.section} w-[90%] 800px:w-[60%]`}>
         <h1
-          className={`text-[35px] leading-[1.2] 800px:text-[60px] text-[#000000] font-[600] capitalize`}
+          className={`text-[35px] leading-[1.2] 800px:text-[60px] text-[#000000] font-[600] font-semibold capitalize`}
         >
           Best Collection for <br /> Mobile Parts
         </h1>
-        <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#000000]">
+        <p className="pt-5 text-[16px] font-[Poppins] font-[400] font-semibold text-[#fff]">
         Discover genuine mobile parts for all your repair needs. We offer high-quality components sourced directly from trusted manufacturers.<br /> From screens to batteries and more, find the perfect part to restore your mobile device's functionality.
           <br /> Trust us for reliable and durable solutions that ensure optimal performance. Upgrade your repair experience with our authentic mobile parts.
         </p>
