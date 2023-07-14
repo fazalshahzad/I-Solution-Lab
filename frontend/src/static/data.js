@@ -191,28 +191,28 @@ export const navItems = [
   export const categoriesData = [
     {
       id: 1,
-      title: "Computers and Laptops",
+      title: "Batteries",
       subTitle: "",
       image_Url:
         "https://cdn.shopify.com/s/files/1/1706/9177/products/NEWAppleMacbookProwithM1ProChip14InchLaptop2021ModelMKGQ3LL_A_16GB_1TBSSD_custommacbd.jpg?v=1659592838",
     },
     {
       id: 2,
-      title: "cosmetics and body care",
+      title: "Mobile Camera",
       subTitle: "",
       image_Url:
         "https://indian-retailer.s3.ap-south-1.amazonaws.com/s3fs-public/2021-07/kosme1.png",
     },
     {
       id: 3,
-      title: "Accesories",
+      title: "Mobile LCD",
       subTitle: "",
       image_Url:
         "https://img.freepik.com/free-vector/ordering-goods-online-internet-store-online-shopping-niche-e-commerce-website-mother-buying-babies-clothes-footwear-toys-infant-accessories_335657-2345.jpg?w=2000",
     },
     {
       id: 4,
-      title: "Cloths",
+      title: "Charging Strips",
       subTitle: "",
       image_Url:
         "https://www.shift4shop.com/2015/images/industries/clothing/clothing-apparel.png",
