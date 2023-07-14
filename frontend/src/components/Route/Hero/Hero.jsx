@@ -16,11 +16,11 @@ const Hero = () => {
     >
       <div className={`${styles.section} w-[90%] 800px:w-[60%]`}>
         <h1
-          className={`text-[35px] leading-[1.2] 800px:text-[60px] text-[#3321c8] font-[600] capitalize`}
+          className={`text-[35px] leading-[1.2] 800px:text-[60px] text-[#00bbf0] font-[600] capitalize`}
         >
           Best Collection for <br /> home Decoration
         </h1>
-        <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#3321c8]" >
+        <p className="pt-5 text-[16px] font-[Poppins] font-[400] text-[#00bbf0]" >
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae,
           assumenda? Quisquam itaque <br /> exercitationem labore vel, dolore
           quidem asperiores, laudantium temporibus soluta optio consequatur{" "}
