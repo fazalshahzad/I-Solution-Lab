@@ -16,7 +16,7 @@ const Hero = () => {
     >
       <div className={`${styles.section} w-[90%] 800px:w-[60%]`}>
         <h1
-          className={`text-[35px] leading-[1.2] 800px:text-[60px] text-[#2b2024] font-[600] capitalize`}
+          className={`text-[35px] leading-[1.2] 800px:text-[60px] text-[#00000] font-[600] capitalize`}
         >
           Best Collection for <br /> Mobile Parts
         </h1>
