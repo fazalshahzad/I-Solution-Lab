@@ -4,6 +4,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const cookie = require("cookie"); // Added cookie module
 
 app.use(cors({
   origin: ['https://i-solution-lab.vercel.app'],
@@ -50,7 +51,23 @@ app.use(ErrorHandler);
 
 // Set SameSite and Secure attributes for cookies
 app.use((req, res, next) => {
-  res.header("Set-Cookie", "HttpOnly;Secure;SameSite=None");
+  // Get existing cookies
+  const cookies = req.headers.cookie || '';
+  const parsedCookies = cookie.parse(cookies);
+
+  // Set SameSite and Secure attributes for all cookies
+  const modifiedCookies = Object.keys(parsedCookies).map((cookieName) => {
+    const originalCookie = parsedCookies[cookieName];
+    const modifiedCookie = cookie.serialize(cookieName, originalCookie, {
+      sameSite: "none", // Set SameSite attribute to "None"
+      secure: true, // Set Secure attribute to true
+    });
+    return modifiedCookie;
+  });
+
+  // Set the modified cookies in the response headers
+  res.setHeader("Set-Cookie", modifiedCookies);
+
   next();
 });
 
