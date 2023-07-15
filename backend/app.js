@@ -45,7 +45,13 @@ app.use("/api/v2/coupon", coupon);
 app.use("/api/v2/payment", payment);
 app.use("/api/v2/withdraw", withdraw);
 
-// it's for ErrorHandling
+// Error handling middleware
 app.use(ErrorHandler);
+
+// Set SameSite and Secure attributes for cookies
+app.use((req, res, next) => {
+  res.header("Set-Cookie", "HttpOnly;Secure;SameSite=None");
+  next();
+});
 
 module.exports = app;
