@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
-import { categoriesData, productData } from "../../static/data";
+import { categoriesData } from "../../static/data";
 import {
   AiOutlineHeart,
   AiOutlineSearch,
@@ -55,16 +55,16 @@ const Header = ({ activeHeading }) => {
     <>
       <div className={`${styles.section}`}>
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
-        <div>
-  <Link to="/">
-    <img
-      src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
-      alt=""
-      height={50} // Add the desired height value
-      width={100} // Add the desired width value
-    />
-  </Link>
-</div>
+          <div>
+            <Link to="/">
+              <img
+                src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
+                alt=""
+                height={50} // Add the desired height value
+                width={100} // Add the desired width value
+              />
+            </Link>
+          </div>
 
           {/* search box */}
           <div className="w-[50%] relative">
@@ -84,7 +84,7 @@ const Header = ({ activeHeading }) => {
                 {searchData &&
                   searchData.map((i, index) => {
                     return (
-                      <Link to={`/product/${i._id}`}>
+                      <Link to={`/product/${i._id}`} key={index}>
                         <div className="w-full flex items-start-py-3">
                           <img
                             src={`${i.images[0]?.url}`}
@@ -100,14 +100,24 @@ const Header = ({ activeHeading }) => {
             ) : null}
           </div>
 
-          <div className={`${styles.button}`}>
-            <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
-              <h1 className="text-[#fff] flex items-center">
-                {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
-                <IoIosArrowForward className="ml-1" />
-              </h1>
-            </Link>
-          </div>
+          {isAuthenticated ? (
+            <div className={`${styles.button}`}>
+              <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
+                <h1 className="text-[#fff] flex items-center">
+                  {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
+                  <IoIosArrowForward className="ml-1" />
+                </h1>
+              </Link>
+            </div>
+          ) : (
+            <div className={`${styles.button}`}>
+              <Link to="/login">
+                <h1 className="text-[#fff] flex items-center">
+                  Login / Sign up <IoIosArrowForward className="ml-1" />
+                </h1>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
       <div
@@ -284,7 +294,7 @@ const Header = ({ activeHeading }) => {
 
                       const Product_name = d.replace(/\s+/g, "-");
                       return (
-                        <Link to={`/product/${Product_name}`}>
+                        <Link to={`/product/${Product_name}`} key={i._id}>
                           <div className="flex items-center">
                             <img
                               src={i.image_Url[0]?.url}
@@ -301,13 +311,15 @@ const Header = ({ activeHeading }) => {
               </div>
 
               <Navbar active={activeHeading} />
-              <div className={`${styles.button} ml-4 !rounded-[4px]`}>
-                <Link to="/shop-create">
-                  <h1 className="text-[#fff] flex items-center">
-                    Become Seller <IoIosArrowForward className="ml-1" />
-                  </h1>
-                </Link>
-              </div>
+              {isAuthenticated && (isSeller || user?.role === "admin") ? (
+                <div className={`${styles.button} ml-4 !rounded-[4px]`}>
+                  <Link to="/shop-create">
+                    <h1 className="text-[#fff] flex items-center">
+                      Become Seller <IoIosArrowForward className="ml-1" />
+                    </h1>
+                  </Link>
+                </div>
+              ) : null}
               <br />
               <br />
               <br />
