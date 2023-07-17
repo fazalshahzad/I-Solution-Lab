@@ -2,38 +2,18 @@ const express = require("express");
 const ErrorHandler = require("./middleware/error");
 const app = express();
 const cookieParser = require("cookie-parser");
-const cookie = require("cookie");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
 app.use(cors({
-  origin: ['https://i-solution-lab.vercel.app'],
-
-  credentials: true,
-  exposedHeaders: ['set-cookie'],
+  origin: ['https://eshop-tutorial-pyri.vercel.app',],
+  credentials: true
 }));
 
 app.use(express.json());
 app.use(cookieParser());
-
-
-
-app.use(cookieSession({
-  name: 'session',
-  keys: ['key1', 'key2'],
-  secure: true,  // Enable secure attribute, requires HTTPS
-  sameSite: 'none',  // Set SameSite attribute to "none"
-}));
-
-// Set SameSite attribute for cookies
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Credentials", "true"); // Allow credentials
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.cookie("SameSite", "None", { secure: true, httpOnly: true }); // Set Same-Site attribute
-  next();
+app.use("/test", (req, res) => {
+  res.send("Hello world!");
 });
 
 app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
