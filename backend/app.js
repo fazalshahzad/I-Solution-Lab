@@ -6,8 +6,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 
 app.use(cors({
-  origin: ['https://i-solution-lab.vercel.app',],
-  credentials: true
+  origin: ['https://i-solution-lab.vercel.app'],
+  credentials: true,
 }));
 
 app.use(express.json());
@@ -24,6 +24,12 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
     path: "config/.env",
   });
 }
+
+// Add the following code to handle SameSite attribute and secure cookies
+app.use((req, res, next) => {
+  res.setHeader('Set-Cookie', 'HttpOnly; Secure; SameSite=None');
+  next();
+});
 
 // import routes
 const user = require("./controller/user");
