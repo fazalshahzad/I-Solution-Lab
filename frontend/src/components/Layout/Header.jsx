@@ -55,17 +55,18 @@ const Header = ({ activeHeading }) => {
     <>
       <div className={`${styles.section}`}>
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
-          <div>
-            <Link to="/">
-              <img
-                src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
-                alt=""
-                height={50}
-                width={100}
-              />
-            </Link>
-          </div>
+        <div>
+  <Link to="/">
+    <img
+      src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
+      alt=""
+      height={50} // Add the desired height value
+      width={100} // Add the desired width value
+    />
+  </Link>
+</div>
 
+          {/* search box */}
           <div className="w-[50%] relative">
             <input
               type="text"
@@ -83,7 +84,7 @@ const Header = ({ activeHeading }) => {
                 {searchData &&
                   searchData.map((i, index) => {
                     return (
-                      <Link to={`/product/${i._id}`} key={index}>
+                      <Link to={`/product/${i._id}`}>
                         <div className="w-full flex items-start-py-3">
                           <img
                             src={`${i.images[0]?.url}`}
@@ -98,6 +99,15 @@ const Header = ({ activeHeading }) => {
               </div>
             ) : null}
           </div>
+
+          <div className={`${styles.button}`}>
+            <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
+              <h1 className="text-[#fff] flex items-center">
+                {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
+                <IoIosArrowForward className="ml-1" />
+              </h1>
+            </Link>
+          </div>
         </div>
       </div>
       <div
@@ -107,6 +117,7 @@ const Header = ({ activeHeading }) => {
         <div
           className={`${styles.section} relative ${styles.noramlFlex} justify-between`}
         >
+          {/* categories */}
           <div onClick={() => setDropDown(!dropDown)}>
             <div className="relative h-[60px] mt-[10px] w-[270px] hidden 1000px:block">
               <BiMenuAltLeft size={30} className="absolute top-3 left-2" />
@@ -128,9 +139,11 @@ const Header = ({ activeHeading }) => {
               ) : null}
             </div>
           </div>
+          {/* navitems */}
           <div className={`${styles.noramlFlex}`}>
             <Navbar active={activeHeading} />
           </div>
+
           <div className="flex">
             <div className={`${styles.noramlFlex}`}>
               <div
@@ -143,6 +156,7 @@ const Header = ({ activeHeading }) => {
                 </span>
               </div>
             </div>
+
             <div className={`${styles.noramlFlex}`}>
               <div
                 className="relative cursor-pointer mr-[15px]"
@@ -157,28 +171,37 @@ const Header = ({ activeHeading }) => {
                 </span>
               </div>
             </div>
+
             <div className={`${styles.noramlFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
-                {isAuthenticated && (isSeller || user?.role === "admin") ? (
-                  <Link
-                    to={`${isSeller ? "/dashboard" : "/shop-create"}`}
-                    className={`${styles.button}`}
-                  >
-                    <h1 className="text-[#fff] flex items-center">
-                      {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
-                      <IoIosArrowForward className="ml-1" />
-                    </h1>
+                {isAuthenticated ? (
+                  <Link to="/profile">
+                    <img
+                      src={`${user?.avatar?.url}`}
+                      className="w-[35px] h-[35px] rounded-full"
+                      alt=""
+                    />
                   </Link>
-                ) : null}
+                ) : (
+                  <Link to="/login">
+                    <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
+                  </Link>
+                )}
               </div>
             </div>
+
+            {/* cart popup */}
             {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
+
+            {/* wishlist popup */}
             {openWishlist ? (
               <Wishlist setOpenWishlist={setOpenWishlist} />
             ) : null}
           </div>
         </div>
       </div>
+
+      {/* mobile header */}
       <div
         className={`${active === true ? "shadow-sm fixed top-0 left-0 z-10" : null
           }
@@ -197,8 +220,8 @@ const Header = ({ activeHeading }) => {
               <img
                 src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
                 alt=""
-                height={50}
-                width={100}
+                height={50} // Add the desired height value
+                width={100} // Add the desired width value
                 className="mt-3 cursor-pointer"
               />
             </Link>
@@ -214,9 +237,14 @@ const Header = ({ activeHeading }) => {
               </span>
             </div>
           </div>
+          {/* cart popup */}
           {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
+
+          {/* wishlist popup */}
           {openWishlist ? <Wishlist setOpenWishlist={setOpenWishlist} /> : null}
         </div>
+
+        {/* header sidebar */}
         {open && (
           <div
             className={`fixed w-full bg-[#0000005f] z-20 h-full top-0 left-0`}
@@ -240,6 +268,7 @@ const Header = ({ activeHeading }) => {
                   onClick={() => setOpen(false)}
                 />
               </div>
+
               <div className="my-8 w-[92%] m-auto h-[40px relative]">
                 <input
                   type="search"
@@ -252,9 +281,10 @@ const Header = ({ activeHeading }) => {
                   <div className="absolute bg-[#fff] z-10 shadow w-full left-0 p-3">
                     {searchData.map((i) => {
                       const d = i.name;
+
                       const Product_name = d.replace(/\s+/g, "-");
                       return (
-                        <Link to={`/product/${Product_name}`} key={i._id}>
+                        <Link to={`/product/${Product_name}`}>
                           <div className="flex items-center">
                             <img
                               src={i.image_Url[0]?.url}
@@ -269,12 +299,21 @@ const Header = ({ activeHeading }) => {
                   </div>
                 )}
               </div>
+
               <Navbar active={activeHeading} />
+              <div className={`${styles.button} ml-4 !rounded-[4px]`}>
+                <Link to="/shop-create">
+                  <h1 className="text-[#fff] flex items-center">
+                    Become Seller <IoIosArrowForward className="ml-1" />
+                  </h1>
+                </Link>
+              </div>
               <br />
               <br />
               <br />
+
               <div className="flex w-full justify-center">
-                {isAuthenticated && (isSeller || user?.role === "admin") ? (
+                {isAuthenticated ? (
                   <div>
                     <Link to="/profile">
                       <img
@@ -284,7 +323,22 @@ const Header = ({ activeHeading }) => {
                       />
                     </Link>
                   </div>
-                ) : null}
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      className="text-[18px] pr-[10px] text-[#000000b7]"
+                    >
+                      Login /
+                    </Link>
+                    <Link
+                      to="/sign-up"
+                      className="text-[18px] text-[#000000b7]"
+                    >
+                      Sign up
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
