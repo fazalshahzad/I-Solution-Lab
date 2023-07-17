@@ -27,7 +27,7 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
 
 // Add the following code to handle SameSite attribute and secure cookies
 app.use((req, res, next) => {
-  res.setHeader('Set-Cookie', 'HttpOnly; Secure; SameSite=Lax');
+  res.setHeader('Set-Cookie', 'HttpOnly; Secure; SameSite=Strict');
   next();
 });
 
