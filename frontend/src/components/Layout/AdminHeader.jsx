@@ -14,8 +14,10 @@ const AdminHeader = () => {
       <div>
         <Link to="/">
           <img
-            src="https://shopo.quomodothemes.website/assets/images/logo.svg"
+            src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
             alt=""
+            height={50} // Add the desired height value
+            width={100} // Add the desired width value
           />
         </Link>
       </div>
