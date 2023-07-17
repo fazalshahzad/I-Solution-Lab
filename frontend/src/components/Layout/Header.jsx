@@ -30,6 +30,7 @@ const Header = ({ activeHeading }) => {
   const [openCart, setOpenCart] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
   const [open, setOpen] = useState(false);
+  const profileImage = isAuthenticated ? user?.avatar?.url : null;
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -110,9 +111,7 @@ const Header = ({ activeHeading }) => {
               </Link>
             </div>
           ) : (
-            <div className="">
-              
-            </div>
+            <div className=""></div>
           )}
         </div>
       </div>
@@ -183,7 +182,7 @@ const Header = ({ activeHeading }) => {
                 {isAuthenticated ? (
                   <Link to="/profile">
                     <img
-                      src={`${user?.avatar?.url}`}
+                      src={profileImage}
                       className="w-[35px] h-[35px] rounded-full"
                       alt=""
                     />
@@ -325,7 +324,7 @@ const Header = ({ activeHeading }) => {
                   <div>
                     <Link to="/profile">
                       <img
-                        src={`${user.avatar?.url}`}
+                        src={profileImage}
                         alt=""
                         className="w-[60px] h-[60px] rounded-full border-[3px] border-[#0eae88]"
                       />
@@ -333,7 +332,7 @@ const Header = ({ activeHeading }) => {
                   </div>
                 ) : (
                   <>
-                   
+                    {/* Render the login button or other authentication-related components */}
                   </>
                 )}
               </div>
