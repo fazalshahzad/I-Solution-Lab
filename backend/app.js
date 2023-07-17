@@ -8,11 +8,22 @@ const cors = require("cors");
 
 app.use(cors({
   origin: ['https://i-solution-lab.vercel.app'],
-  credentials: true
+
+  credentials: true,
+  exposedHeaders: ['set-cookie'],
 }));
 
 app.use(express.json());
 app.use(cookieParser());
+
+
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2'],
+  secure: true,  // Enable secure attribute, requires HTTPS
+  sameSite: 'none',  // Set SameSite attribute to "none"
+}));
 
 // Set SameSite attribute for cookies
 app.use((req, res, next) => {
