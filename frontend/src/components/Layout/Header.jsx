@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../styles/styles";
-import { categoriesData } from "../../static/data";
+import { categoriesData, productData } from "../../static/data";
 import {
   AiOutlineHeart,
   AiOutlineSearch,
@@ -30,7 +30,6 @@ const Header = ({ activeHeading }) => {
   const [openCart, setOpenCart] = useState(false);
   const [openWishlist, setOpenWishlist] = useState(false);
   const [open, setOpen] = useState(false);
-  const profileImage = isAuthenticated ? user?.avatar?.url : null;
 
   const handleSearchChange = (e) => {
     const term = e.target.value;
@@ -56,16 +55,16 @@ const Header = ({ activeHeading }) => {
     <>
       <div className={`${styles.section}`}>
         <div className="hidden 800px:h-[50px] 800px:my-[20px] 800px:flex items-center justify-between">
-          <div>
-            <Link to="/">
-              <img
-                src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
-                alt=""
-                height={50} // Add the desired height value
-                width={100} // Add the desired width value
-              />
-            </Link>
-          </div>
+        <div>
+  <Link to="/">
+    <img
+      src="https://i.ibb.co/HgTK048/Picsart-23-07-13-21-01-54-585.png"
+      alt=""
+      height={50} // Add the desired height value
+      width={100} // Add the desired width value
+    />
+  </Link>
+</div>
 
           {/* search box */}
           <div className="w-[50%] relative">
@@ -85,7 +84,7 @@ const Header = ({ activeHeading }) => {
                 {searchData &&
                   searchData.map((i, index) => {
                     return (
-                      <Link to={`/product/${i._id}`} key={index}>
+                      <Link to={`/product/${i._id}`}>
                         <div className="w-full flex items-start-py-3">
                           <img
                             src={`${i.images[0]?.url}`}
@@ -101,18 +100,14 @@ const Header = ({ activeHeading }) => {
             ) : null}
           </div>
 
-          {isAuthenticated ? (
-            <div className={`${styles.button}`}>
-              <Link to={`${isSeller ? "/dashboard" : "/shop-login"}`}>
-                <h1 className="text-[#fff] flex items-center">
-                  {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
-                  <IoIosArrowForward className="ml-1" />
-                </h1>
-              </Link>
-            </div>
-          ) : (
-            <div className=""></div>
-          )}
+          <div className={`${styles.button}`}>
+            <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
+              <h1 className="text-[#fff] flex items-center">
+                {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
+                <IoIosArrowForward className="ml-1" />
+              </h1>
+            </Link>
+          </div>
         </div>
       </div>
       <div
@@ -182,7 +177,7 @@ const Header = ({ activeHeading }) => {
                 {isAuthenticated ? (
                   <Link to="/profile">
                     <img
-                      src={profileImage}
+                      src={`${user?.avatar?.url}`}
                       className="w-[35px] h-[35px] rounded-full"
                       alt=""
                     />
@@ -289,7 +284,7 @@ const Header = ({ activeHeading }) => {
 
                       const Product_name = d.replace(/\s+/g, "-");
                       return (
-                        <Link to={`/product/${Product_name}`} key={i._id}>
+                        <Link to={`/product/${Product_name}`}>
                           <div className="flex items-center">
                             <img
                               src={i.image_Url[0]?.url}
@@ -306,15 +301,13 @@ const Header = ({ activeHeading }) => {
               </div>
 
               <Navbar active={activeHeading} />
-              {isAuthenticated && (isSeller || user?.role === "admin") ? (
-                <div className={`${styles.button} ml-4 !rounded-[4px]`}>
-                  <Link to="/shop-create">
-                    <h1 className="text-[#fff] flex items-center">
-                      Become Seller <IoIosArrowForward className="ml-1" />
-                    </h1>
-                  </Link>
-                </div>
-              ) : null}
+              <div className={`${styles.button} ml-4 !rounded-[4px]`}>
+                <Link to="/shop-create">
+                  <h1 className="text-[#fff] flex items-center">
+                    Become Seller <IoIosArrowForward className="ml-1" />
+                  </h1>
+                </Link>
+              </div>
               <br />
               <br />
               <br />
@@ -324,7 +317,7 @@ const Header = ({ activeHeading }) => {
                   <div>
                     <Link to="/profile">
                       <img
-                        src={profileImage}
+                        src={`${user.avatar?.url}`}
                         alt=""
                         className="w-[60px] h-[60px] rounded-full border-[3px] border-[#0eae88]"
                       />
@@ -332,7 +325,18 @@ const Header = ({ activeHeading }) => {
                   </div>
                 ) : (
                   <>
-                    {/* Render the login button or other authentication-related components */}
+                    <Link
+                      to="/login"
+                      className="text-[18px] pr-[10px] text-[#000000b7]"
+                    >
+                      Login /
+                    </Link>
+                    <Link
+                      to="/sign-up"
+                      className="text-[18px] text-[#000000b7]"
+                    >
+                      Sign up
+                    </Link>
                   </>
                 )}
               </div>
