@@ -98,23 +98,6 @@ const Header = ({ activeHeading }) => {
               </div>
             ) : null}
           </div>
-
-          <div className={`${styles.button}`}>
-            {isAuthenticated && user?.role === "Admin" ? (
-              <Link to="/admin-dashboard">
-                <h1 className="text-[#fff] flex items-center">
-                  Admin Dashboard <IoIosArrowForward className="ml-1" />
-                </h1>
-              </Link>
-            ) : (
-              <Link to={`${isSeller ? "/dashboard" : "/shop-create"}`}>
-                <h1 className="text-[#fff] flex items-center">
-                  {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
-                  <IoIosArrowForward className="ml-1" />
-                </h1>
-              </Link>
-            )}
-          </div>
         </div>
       </div>
       <div
@@ -176,19 +159,17 @@ const Header = ({ activeHeading }) => {
             </div>
             <div className={`${styles.noramlFlex}`}>
               <div className="relative cursor-pointer mr-[15px]">
-                {isAuthenticated ? (
-                  <Link to="/profile">
-                    <img
-                      src={`${user?.avatar?.url}`}
-                      className="w-[35px] h-[35px] rounded-full"
-                      alt=""
-                    />
+                {isAuthenticated && (isSeller || user?.role === "admin") ? (
+                  <Link
+                    to={`${isSeller ? "/dashboard" : "/shop-create"}`}
+                    className={`${styles.button}`}
+                  >
+                    <h1 className="text-[#fff] flex items-center">
+                      {isSeller ? "Go Dashboard" : "Become Seller"}{" "}
+                      <IoIosArrowForward className="ml-1" />
+                    </h1>
                   </Link>
-                ) : (
-                  <Link to="/login">
-                    <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
-                  </Link>
-                )}
+                ) : null}
               </div>
             </div>
             {openCart ? <Cart setOpenCart={setOpenCart} /> : null}
@@ -289,18 +270,11 @@ const Header = ({ activeHeading }) => {
                 )}
               </div>
               <Navbar active={activeHeading} />
-              <div className={`${styles.button} ml-4 !rounded-[4px]`}>
-                <Link to="/shop-create">
-                  <h1 className="text-[#fff] flex items-center">
-                    Become Seller <IoIosArrowForward className="ml-1" />
-                  </h1>
-                </Link>
-              </div>
               <br />
               <br />
               <br />
               <div className="flex w-full justify-center">
-                {isAuthenticated ? (
+                {isAuthenticated && (isSeller || user?.role === "admin") ? (
                   <div>
                     <Link to="/profile">
                       <img
@@ -310,22 +284,7 @@ const Header = ({ activeHeading }) => {
                       />
                     </Link>
                   </div>
-                ) : (
-                  <>
-                    <Link
-                      to="/login"
-                      className="text-[18px] pr-[10px] text-[#000000b7]"
-                    >
-                      Login /
-                    </Link>
-                    <Link
-                      to="/sign-up"
-                      className="text-[18px] text-[#000000b7]"
-                    >
-                      Sign up
-                    </Link>
-                  </>
-                )}
+                ) : null}
               </div>
             </div>
           </div>
