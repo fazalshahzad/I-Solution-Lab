@@ -35,7 +35,7 @@ router.post("/create-user", async (req, res, next) => {
 
     const activationToken = createActivationToken(user);
 
-    const activationUrl = `https://www.isolutiontraders.com/activation/${activationToken}`;
+    const activationUrl = `https://isolutiontraders.com/activation/${activationToken}`;
 
     try {
       await sendMail({

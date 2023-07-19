@@ -39,7 +39,7 @@ router.post("/create-shop", catchAsyncErrors(async (req, res, next) => {
 
     const activationToken = createActivationToken(seller);
 
-    const activationUrl = `https://www.isolutiontraders.com/seller/activation/${activationToken}`;
+    const activationUrl = `https://isolutiontraders.com/seller/activation/${activationToken}`;
 
     try {
       await sendMail({
