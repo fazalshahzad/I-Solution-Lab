@@ -51,11 +51,6 @@ const Header = ({ activeHeading }) => {
     }
   });
 
-
-
-  const isAdminUser = isAuthenticated && user && user.isAdmin;
-
-
   return (
     <>
       <div className={`${styles.section}`}>
@@ -306,7 +301,6 @@ const Header = ({ activeHeading }) => {
               </div>
 
               <Navbar active={activeHeading} />
-              {isAdminUser ?
               <div className={`${styles.button} ml-4 !rounded-[4px]`}>
                 <Link to="/shop-create">
                   <h1 className="text-[#fff] flex items-center">
@@ -314,7 +308,6 @@ const Header = ({ activeHeading }) => {
                   </h1>
                 </Link>
               </div>
-              : null}
               <br />
               <br />
               <br />
