@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <div>
       <Helmet>
-        <title>Home Page | iSolution</title>
+        <title>I Solution Traders | iSolution</title>
         <meta
           name="description"
           content="Welcome to iSolution's online store. Browse our categories, check out the best deals, and find featured products."
