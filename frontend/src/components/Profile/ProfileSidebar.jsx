@@ -23,7 +23,6 @@ const ProfileSidebar = ({ setActive, active }) => {
     .get(`${server}/user/logout`, { withCredentials: true })
     .then((res) => {
       toast.success(res.data.message);
-      navigate("/login");
     })
     .catch((error) => {
       toast.error(error.response.data.message);
