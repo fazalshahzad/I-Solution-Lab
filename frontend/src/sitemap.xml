@@ -25,17 +25,17 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Activation Page -->
+  <!-- Activation Page - Replace :activation_token with the actual token -->
   <url>
-    <loc>https://www.isolutiontraders.com/activation/:activation_token</loc>
+    <loc>https://www.isolutiontraders.com/activation/activation_token_here</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
-  <!-- Seller Activation Page -->
+  <!-- Seller Activation Page - Replace :activation_token with the actual token -->
   <url>
-    <loc>https://www.isolutiontraders.com/seller/activation/:activation_token</loc>
+    <loc>https://www.isolutiontraders.com/seller/activation/activation_token_here</loc>
     <lastmod>2023-07-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
