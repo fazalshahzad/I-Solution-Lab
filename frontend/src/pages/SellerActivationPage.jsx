@@ -1,7 +1,8 @@
-import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async"; // Import Helmet
+import axios from "axios";
 import { server } from "../server";
 
 const SellerActivationPage = () => {
@@ -36,10 +37,14 @@ const SellerActivationPage = () => {
         alignItems: "center",
       }}
     >
+      <Helmet>
+        <title>Seller Activation Page</title>
+        {/* Add other meta tags as needed */}
+      </Helmet>
       {error ? (
         <p>Your token is expired!</p>
       ) : (
-        <p>Your account has been created suceessfully!</p>
+        <p>Your account has been created successfully!</p>
       )}
     </div>
   );

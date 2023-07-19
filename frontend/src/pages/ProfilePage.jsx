@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Helmet } from "react-helmet-async"; // Import Helmet
 import Header from "../components/Layout/Header";
 import styles from "../styles/styles";
 import Loader from "../components/Layout/Loader";
@@ -12,6 +13,10 @@ const ProfilePage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Profile Page</title>
+        {/* Add other meta tags as needed */}
+      </Helmet>
       {loading ? (
         <Loader />
       ) : (

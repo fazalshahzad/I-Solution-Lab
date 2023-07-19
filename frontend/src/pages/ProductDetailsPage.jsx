@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async"; // Import Helmet
 import Footer from "../components/Layout/Footer";
 import Header from "../components/Layout/Header";
 import ProductDetails from "../components/Products/ProductDetails";
@@ -26,6 +27,10 @@ const ProductDetailsPage = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Product Details Page</title>
+        {/* Add other meta tags as needed */}
+      </Helmet>
       <Header />
       <ProductDetails data={data} />
         {
