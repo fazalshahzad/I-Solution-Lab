@@ -265,13 +265,7 @@ export const navItems = [
   ];
   
   export const footerSupportLinks = [
-    {
-      name: "FAQ",
-    },
    
-    {
-      name: "Live chat",
-    },
   ];
   
 
