@@ -28,16 +28,17 @@ const ProfileSidebar = ({ setActive, active }) => {
       toast.error(error.response.data.message);
     })
     .finally(() => {
-      // Clear the token from local storage or cookies
-      // For example, if using local storage:
+      // Clear the token from local storage
       localStorage.removeItem("token");
-      // If using cookies:
-      // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      
+
+      // Clear the user from local storage
+      localStorage.removeItem("user");
+
       // Redirect to the login page
       navigate("/login");
     });
 };
+
 
 
   return (
