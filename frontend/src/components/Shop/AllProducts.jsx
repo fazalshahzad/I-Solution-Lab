@@ -4,8 +4,7 @@ import React, { useEffect } from "react";
 import { AiOutlineDelete, AiOutlineEye } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { getAllProductsShop } from "../../redux/actions/product";
-import { deleteProduct } from "../../redux/actions/product";
+import { getAllProductsShop, deleteProduct } from "../../redux/actions/product"; // Assuming you have the correct action imports
 import Loader from "../Layout/Loader";
 
 const AllProducts = () => {
@@ -16,11 +15,10 @@ const AllProducts = () => {
 
   useEffect(() => {
     dispatch(getAllProductsShop(seller._id));
-  }, [dispatch]);
+  }, [dispatch, seller._id]);
 
   const handleDelete = (id) => {
     dispatch(deleteProduct(id));
-    window.location.reload();
   };
 
   const columns = [
@@ -44,7 +42,6 @@ const AllProducts = () => {
       minWidth: 80,
       flex: 0.5,
     },
-
     {
       field: "sold",
       headerName: "Sold out",
@@ -90,18 +87,15 @@ const AllProducts = () => {
     },
   ];
 
-  const row = [];
-
-  products &&
-    products.forEach((item) => {
-      row.push({
+  const rows = products
+    ? products.map((item) => ({
         id: item._id,
         name: item.name,
         price: "Rs " + item.discountPrice,
         Stock: item.stock,
         sold: item?.sold_out,
-      });
-    });
+      }))
+    : [];
 
   return (
     <>
@@ -110,7 +104,7 @@ const AllProducts = () => {
       ) : (
         <div className="w-full mx-8 pt-1 mt-10 bg-white">
           <DataGrid
-            rows={row}
+            rows={rows}
             columns={columns}
             pageSize={10}
             disableSelectionOnClick
