@@ -4,7 +4,6 @@ import { RiLockPasswordLine } from "react-icons/ri";
 import { HiOutlineReceiptRefund, HiOutlineShoppingBag } from "react-icons/hi";
 import {
   MdOutlineAdminPanelSettings,
-  MdOutlinePassword,
   MdOutlineTrackChanges,
 } from "react-icons/md";
 import { TbAddressBook } from "react-icons/tb";
@@ -28,17 +27,16 @@ const ProfileSidebar = ({ setActive, active }) => {
       toast.error(error.response.data.message);
     })
     .finally(() => {
-      // Clear the token from local storage
+      // Clear the token from local storage or cookies
+      // For example, if using local storage:
       localStorage.removeItem("token");
-
-      // Clear the user from local storage
-      localStorage.removeItem("user");
-
+      // If using cookies:
+      // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      
       // Redirect to the login page
       navigate("/login");
     });
 };
-
 
 
   return (
